@@ -1,0 +1,29 @@
+{%extends 'blogapp/base.html'%}
+  {%block title_block%}
+   Durga's home page
+  {%endblock%}
+ {%block content_block%}
+    <h1>DURGA'S BLOG</h1><hr>
+    {%if tag%}
+    <h1>Posts tagged with{{tag.name}}</h1>
+    {%endif%}
+   {%for X in post_list%}
+     <a href='{{X.get_absolute_url}}'><h2>{{X.title}}</h2></a>
+     <p id='date'>Published on{{X.publish}} by {{X.author|title}}</p>
+     <p> Tags:{%for tag in X.tags.all%}
+                <a href="{%url 'post_list_by_tag_name' tag.slug%}">{{tag.name}}</a>
+                {%if not forloop.last%},{%endif%}
+             {%endfor%}
+        </p>
+     {{X.body|truncatewords:30|linebreaks}}
+
+
+   {%endfor%}
+   <select class="" name="">
+     {%for X in post_list%}
+     <option value="Title">{{X.title}}</option>
+     {%endfor%}
+
+   </select>
+   {%include 'blogapp/pagination.html' with page=post_list%}
+ {%endblock%}

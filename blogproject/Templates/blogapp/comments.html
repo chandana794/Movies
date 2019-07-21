@@ -1,0 +1,15 @@
+{%extends 'blogapp/base.html'%}
+  {%block title_block%}
+    Add comments to post
+  {%endblock%}
+ {%block content_block%}
+ <h2>If your form submits successfully you will be re-directed to post page</h2>
+
+ <form method="post">
+  {{form.as_p}}
+  {%csrf_token%}
+ <a href='{{post.get_absolute_url}}'>submit comment</a>
+
+ <input type="submit" name="" value="submit comment">
+</form>
+ {%endblock%}

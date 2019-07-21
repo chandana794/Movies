@@ -1,0 +1,5 @@
+<ul>
+  {%for x in latest_posts%}
+  <a href='{{x.get_absolute_url}}'><h2>{{x.title}}</h2></a>
+  {%endfor%}
+</ul>
